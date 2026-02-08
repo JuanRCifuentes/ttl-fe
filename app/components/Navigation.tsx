@@ -7,12 +7,16 @@ import {
   DialogBackdrop,
   DialogPanel,
   CloseButton,
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
   Popover,
   PopoverButton,
   PopoverPanel,
 } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import Image from "next/image";
 import { pages, pagePath } from "../pages";
 
 const subpages = [
@@ -80,6 +84,7 @@ export default function Navigation() {
               </PopoverButton>
 
               <PopoverPanel
+                focus
                 transition
                 className="absolute left-1/2 z-50 mt-2 w-64 -translate-x-1/2 rounded-xl bg-white dark:bg-neutral-800 shadow-lg ring-1 ring-neutral-900/10 dark:ring-neutral-700 transition data-closed:opacity-0 data-closed:scale-95 data-enter:duration-150 data-enter:ease-out data-leave:duration-100 data-leave:ease-in"
               >
@@ -114,6 +119,19 @@ export default function Navigation() {
                       </CloseButton>
                     );
                   })}
+                  <div className="my-1 h-px bg-neutral-200 dark:bg-neutral-700" />
+
+                  {/* Logo + version */}
+                  <div className="flex flex-col items-center gap-1 py-2">
+                    <Image
+                      src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+                      alt="Company logo"
+                      width={32}
+                      height={32}
+                      className="size-8 rounded-full object-cover"
+                    />
+                    <span className="text-[10px] text-neutral-400 dark:text-neutral-500">v{process.env.NEXT_PUBLIC_APP_VERSION}</span>
+                  </div>
                 </div>
               </PopoverPanel>
             </Popover>
@@ -178,23 +196,73 @@ export default function Navigation() {
                 </div>
               </div>
               <div className="mt-3 space-y-1 px-2">
-                {pages.map((page) => {
-                  const fullPath = pagePath(id, page);
-                  return (
+                {/* Home */}
+                <button
+                  onClick={() => navigate(homePath)}
+                  className={`block w-full text-left rounded-md px-3 py-2 text-base font-medium cursor-pointer ${
+                    pathname === homePath
+                      ? "bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-300"
+                      : "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-white"
+                  }`}
+                >
+                  Home
+                </button>
+
+                {/* Product Details — collapsible */}
+                <Disclosure defaultOpen={pathname.startsWith(productDetailsPath)}>
+                  <DisclosureButton
+                    className={`flex w-full items-center justify-between rounded-md px-3 py-2 text-base font-medium cursor-pointer ${
+                      pathname.startsWith(productDetailsPath)
+                        ? "text-primary-700 dark:text-primary-300"
+                        : "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-white"
+                    }`}
+                  >
+                    Product Details
+                    <ChevronDownIcon className="size-5 text-neutral-400 transition-transform ui-open:rotate-180" />
+                  </DisclosureButton>
+                  <DisclosurePanel className="space-y-1 pl-3">
                     <button
-                      key={page.slug}
-                      onClick={() => navigate(fullPath)}
-                      className={`block w-full text-left rounded-md px-3 py-2 text-base font-medium cursor-pointer ${
-                        pathname === fullPath
+                      onClick={() => navigate(productDetailsPath)}
+                      className={`block w-full text-left rounded-md px-3 py-2 text-sm font-semibold cursor-pointer ${
+                        pathname === productDetailsPath
                           ? "bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-300"
-                          : "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-white"
+                          : "text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-white"
                       }`}
                     >
-                      {page.name}
+                      Overview
                     </button>
-                  );
-                })}
+                    {subpages.map((sub) => {
+                      const subPath = `${productDetailsPath}/${sub.route}`;
+                      const isActive = pathname === subPath;
+                      return (
+                        <button
+                          key={sub.route}
+                          onClick={() => navigate(subPath)}
+                          className={`block w-full text-left rounded-md px-3 py-2 text-sm cursor-pointer ${
+                            isActive
+                              ? "bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-300"
+                              : "text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-white"
+                          }`}
+                        >
+                          {sub.title}
+                        </button>
+                      );
+                    })}
+                  </DisclosurePanel>
+                </Disclosure>
               </div>
+            </div>
+
+            {/* Logo + version */}
+            <div className="flex flex-col items-center gap-2 px-4 py-4">
+              <Image
+                src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+                alt="Company logo"
+                width={48}
+                height={48}
+                className="size-12 rounded-full object-cover"
+              />
+              <span className="text-[10px] text-neutral-400 dark:text-neutral-500">v{process.env.NEXT_PUBLIC_APP_VERSION}</span>
             </div>
           </div>
         </DialogPanel>
