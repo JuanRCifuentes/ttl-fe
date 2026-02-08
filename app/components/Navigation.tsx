@@ -6,32 +6,131 @@ import {
   Dialog,
   DialogBackdrop,
   DialogPanel,
+  CloseButton,
+  Popover,
+  PopoverButton,
+  PopoverPanel,
 } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { pages, pagePath } from "../pages";
+
+const subpages = [
+  { title: "Supply Chain", route: "supply-chain" },
+  { title: "Composition", route: "composition" },
+  { title: "Environmental Impact", route: "environmental-impact" },
+  { title: "Social Impact", route: "social-impact" },
+  { title: "Material Innovation", route: "material-innovation" },
+  { title: "Garment Care", route: "garment-care" },
+  { title: "Certifications", route: "certifications" },
+];
 
 export default function Navigation() {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
   const { id } = useParams<{ id: string }>();
-
   function navigate(path: string) {
     router.push(path, { scroll: false });
     setOpen(false);
   }
 
+  const homePath = pagePath(id, pages[0]);
+  const productDetailsPath = pagePath(id, pages[1]);
+
   return (
     <header className="sticky top-0 z-40 bg-background">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-        <div className="relative flex items-center justify-between py-4 sm:py-5">
+      <nav className="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+        <div className="flex h-14 sm:h-16 items-center justify-between">
           {/* Logo */}
           <div className="shrink-0">
-            <span className="text-lg font-bold text-primary-700 dark:text-white">My App</span>
+            <button
+              onClick={() => navigate(homePath)}
+              className="text-lg font-bold text-primary-700 dark:text-white cursor-pointer"
+            >
+              My App
+            </button>
           </div>
 
-          {/* Actions */}
-          <div className="flex items-center gap-2 shrink-0">
+          {/* Desktop nav (lg+) */}
+          <div className="hidden lg:flex lg:items-center lg:gap-1">
+            {/* Home link */}
+            <button
+              onClick={() => navigate(homePath)}
+              className={`rounded-md px-3 py-2 text-sm font-medium transition-colors cursor-pointer ${
+                pathname === homePath
+                  ? "text-primary-700 dark:text-primary-300"
+                  : "text-neutral-600 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white"
+              }`}
+            >
+              Home
+            </button>
+
+            {/* Product Details flyout */}
+            <Popover className="relative">
+              <PopoverButton
+                className={`group inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors cursor-pointer focus:outline-none ${
+                  pathname.startsWith(productDetailsPath)
+                    ? "text-primary-700 dark:text-primary-300"
+                    : "text-neutral-600 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white"
+                }`}
+              >
+                Product Details
+                <ChevronDownIcon className="size-4 text-neutral-400 group-data-open:rotate-180 transition-transform" />
+              </PopoverButton>
+
+              <PopoverPanel
+                transition
+                className="absolute left-1/2 z-50 mt-2 w-64 -translate-x-1/2 rounded-xl bg-white dark:bg-neutral-800 shadow-lg ring-1 ring-neutral-900/10 dark:ring-neutral-700 transition data-closed:opacity-0 data-closed:scale-95 data-enter:duration-150 data-enter:ease-out data-leave:duration-100 data-leave:ease-in"
+              >
+                <div className="p-2">
+                  {/* Link to main product details page */}
+                  <CloseButton
+                    as="button"
+                    onClick={() => navigate(productDetailsPath)}
+                    className="block w-full text-left rounded-lg px-3 py-2 text-sm font-semibold text-neutral-900 dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors cursor-pointer"
+                  >
+                    Overview
+                  </CloseButton>
+
+                  <div className="my-1 h-px bg-neutral-200 dark:bg-neutral-700" />
+
+                  {/* Subpages */}
+                  {subpages.map((sub) => {
+                    const subPath = `${productDetailsPath}/${sub.route}`;
+                    const isActive = pathname === subPath;
+                    return (
+                      <CloseButton
+                        as="button"
+                        key={sub.route}
+                        onClick={() => navigate(subPath)}
+                        className={`block w-full text-left rounded-lg px-3 py-2 text-sm transition-colors cursor-pointer ${
+                          isActive
+                            ? "bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-300"
+                            : "text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-white"
+                        }`}
+                      >
+                        {sub.title}
+                      </CloseButton>
+                    );
+                  })}
+                </div>
+              </PopoverPanel>
+            </Popover>
+
+            {/* What's a DPP? */}
+            <a
+              href="https://data.europa.eu/en/news-events/news/eus-digital-product-passport-advancing-transparency-and-sustainability"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-md px-3 py-2 text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white transition-colors"
+            >
+              What&apos;s a DPP?
+            </a>
+          </div>
+
+          {/* Mobile actions (< lg) */}
+          <div className="flex items-center gap-2 shrink-0 lg:hidden">
             <a
               href="https://data.europa.eu/en/news-events/news/eus-digital-product-passport-advancing-transparency-and-sustainability"
               target="_blank"
@@ -42,7 +141,7 @@ export default function Navigation() {
             </a>
             <button
               onClick={() => setOpen(true)}
-              className="relative inline-flex items-center justify-center rounded-md p-2 text-primary-600 hover:bg-primary-100 hover:text-primary-800 focus-visible:outline-2 focus-visible:outline-primary-500 dark:text-primary-100 dark:hover:bg-primary-600 dark:hover:text-white"
+              className="relative inline-flex items-center justify-center rounded-md p-2 text-primary-600 hover:bg-primary-100 hover:text-primary-800 focus-visible:outline-2 focus-visible:outline-primary-500 dark:text-primary-100 dark:hover:bg-primary-600 dark:hover:text-white cursor-pointer"
             >
               <span className="absolute -inset-0.5" />
               <span className="sr-only">Open main menu</span>
@@ -50,10 +149,10 @@ export default function Navigation() {
             </button>
           </div>
         </div>
-      </div>
+      </nav>
 
-      {/* Menu dialog */}
-      <Dialog open={open} onClose={setOpen} className="relative z-50">
+      {/* Mobile menu dialog */}
+      <Dialog open={open} onClose={setOpen} className="relative z-50 lg:hidden">
         <DialogBackdrop
           transition
           className="fixed inset-0 z-20 bg-neutral-900/25 duration-150 data-closed:opacity-0 data-enter:ease-out data-leave:ease-in"
@@ -70,7 +169,7 @@ export default function Navigation() {
                 <div className="-mr-2">
                   <button
                     onClick={() => setOpen(false)}
-                    className="relative inline-flex items-center justify-center rounded-md bg-white p-2 text-neutral-400 hover:bg-neutral-50 hover:text-neutral-500 focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-primary-500 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:hover:text-white dark:focus-visible:outline-primary-400"
+                    className="relative inline-flex items-center justify-center rounded-md bg-white p-2 text-neutral-400 hover:bg-neutral-50 hover:text-neutral-500 focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-primary-500 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:hover:text-white dark:focus-visible:outline-primary-400 cursor-pointer"
                   >
                     <span className="absolute -inset-0.5" />
                     <span className="sr-only">Close menu</span>
@@ -82,17 +181,17 @@ export default function Navigation() {
                 {pages.map((page) => {
                   const fullPath = pagePath(id, page);
                   return (
-                  <button
-                    key={page.slug}
-                    onClick={() => navigate(fullPath)}
-                    className={`block w-full text-left rounded-md px-3 py-2 text-base font-medium ${
-                      pathname === fullPath
-                        ? "bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-300"
-                        : "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-white"
-                    }`}
-                  >
-                    {page.name}
-                  </button>
+                    <button
+                      key={page.slug}
+                      onClick={() => navigate(fullPath)}
+                      className={`block w-full text-left rounded-md px-3 py-2 text-base font-medium cursor-pointer ${
+                        pathname === fullPath
+                          ? "bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-300"
+                          : "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-white"
+                      }`}
+                    >
+                      {page.name}
+                    </button>
                   );
                 })}
               </div>
