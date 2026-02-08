@@ -3,6 +3,7 @@ import type { Product } from "../context/ProductContext";
 import type { Certification } from "../hooks/useCertifications";
 import type { MaterialInnovation } from "../hooks/useMaterialInnovation";
 import type { GarmentCare } from "../hooks/useGarmentCare";
+import type { Composition } from "../hooks/useComposition";
 
 const IMAGE_URL =
   "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2830&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply";
@@ -165,6 +166,59 @@ const garmentCare: GarmentCare = {
   linkLabel: "Know more about the product",
 };
 
+const composition: Composition = {
+  materials: [
+    {
+      name: "Shiringa (Natural Rubber)",
+      percentage: 45,
+      description:
+        "Wild-harvested latex from the Castilla elastica tree in the Peruvian Amazon. Provides the jacket's signature water resistance and flexibility while being fully biodegradable.",
+      color: "#2E9E2E",
+      main: true,
+    },
+    {
+      name: "Organic Cotton",
+      percentage: 30,
+      description:
+        "GOTS-certified organic cotton grown without synthetic pesticides or fertilisers. Forms the base fabric layer, offering breathability and comfort against the skin.",
+      color: "#C85D21",
+      main: true,
+    },
+    {
+      name: "Recycled Polyester",
+      percentage: 12,
+      description:
+        "Made from post-consumer PET bottles. Used in the lining for added durability and moisture-wicking properties.",
+      color: "#3994C0",
+      main: true,
+    },
+    {
+      name: "Alpaca Wool",
+      percentage: 8,
+      description:
+        "Ethically sourced from free-range alpacas in the Peruvian highlands. Provides lightweight insulation and natural temperature regulation.",
+      color: "#E9B949",
+      main: false,
+    },
+    {
+      name: "Brass Hardware",
+      percentage: 3,
+      description:
+        "Solid brass zippers and buttons with an anti-tarnish coating. Sourced from a family-owned foundry in Lima.",
+      color: "#7E7E7E",
+      main: false,
+    },
+    {
+      name: "Waxed Cotton Thread",
+      percentage: 2,
+      description:
+        "Organic cotton thread coated in natural beeswax for water resistance. Used in all structural seams with triple-stitch reinforcement.",
+      color: "#B1B1B1",
+      main: false,
+    },
+  ],
+};
+
 export const handlers = [
   http.get("/api/product/:id", () => {
     return HttpResponse.json(product);
@@ -177,5 +231,8 @@ export const handlers = [
   }),
   http.get("/api/product/:id/garment-care", () => {
     return HttpResponse.json(garmentCare);
+  }),
+  http.get("/api/product/:id/composition", () => {
+    return HttpResponse.json(composition);
   }),
 ];
