@@ -5,6 +5,7 @@ import type { MaterialInnovation } from "../hooks/useMaterialInnovation";
 import type { GarmentCare } from "../hooks/useGarmentCare";
 import type { Composition } from "../hooks/useComposition";
 import type { EnvironmentalImpact } from "../hooks/useEnvironmentalImpact";
+import type { SocialImpact } from "../hooks/useSocialImpact";
 
 const IMAGE_URL =
   "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2830&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply";
@@ -234,6 +235,27 @@ const environmentalImpact: EnvironmentalImpact = {
   learnMoreUrl: "https://www.example.com/environmental-impact",
 };
 
+const socialImpact: SocialImpact = {
+  images: [
+    { src: IMAGE_URL, alt: "Sustainable shiringa extraction" },
+    { src: IMAGE_URL, alt: "Community artisan work" },
+  ],
+  text: "Through the sustainable extraction of shiringa (wild rubber), 240 hectares of Amazon rainforest are preserved. Our non-extractive bioinnovation transforms latex without harming the trees, proving that high-end design can thrive without depleting ecosystems.",
+  compliance: [
+    { name: "ILO Core Conventions (Forced labor, child labor, discrimination)", status: "compliant" },
+    { name: "EU Corporate Sustainability Due Diligence Directive (CSDDD)", status: "compliant" },
+    { name: "UK Modern Slavery Act", status: "compliant" },
+    { name: "California Transparency in Supply Chains Act", status: "compliant" },
+    { name: "German Supply Chain Due Diligence Act (LkSG)", status: "certified" },
+    { name: "International Accord for Health and Safety in the Textile and Garment Industry", status: "compliant" },
+    { name: "Fair Labor Association (FLA) Code of Conduct", status: "certified" },
+    { name: "SA8000 Standard (Social Accountability)", status: "compliant" },
+    { name: "SMETA (Sedex Members Ethical Trade Audit)", status: "non-compliant" },
+  ],
+  linkUrl: "https://www.example.com/social-impact",
+  linkLabel: "Learn more about the product",
+};
+
 export const handlers = [
   http.get("/api/product/:id", () => {
     return HttpResponse.json(product);
@@ -252,5 +274,8 @@ export const handlers = [
   }),
   http.get("/api/product/:id/environmental-impact", () => {
     return HttpResponse.json(environmentalImpact);
+  }),
+  http.get("/api/product/:id/social-impact", () => {
+    return HttpResponse.json(socialImpact);
   }),
 ];
