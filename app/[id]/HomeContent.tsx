@@ -5,6 +5,7 @@ import ImageCarousel from "@/app/components/ImageCarousel";
 import AppDialog from "@/app/components/AppDialog";
 import { useProduct } from "@/app/context/ProductContext";
 
+
 export default function HomeContent() {
   const product = useProduct();
   const [descriptionOpen, setDescriptionOpen] = useState(false);

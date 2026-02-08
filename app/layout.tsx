@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Roboto, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Navigation from "./components/Navigation";
+import Footer from "./components/Footer";
+
 import Providers from "./components/Providers";
 
 const roboto = Roboto({
@@ -25,15 +27,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-dvh bg-neutral-50 dark:bg-neutral-900">
+    <html lang="en" className="bg-neutral-50 dark:bg-neutral-900">
       <body
-        className={`${roboto.variable} ${playfair.variable} antialiased flex flex-col h-dvh`}
+        className={`${roboto.variable} ${playfair.variable} antialiased flex flex-col min-h-dvh`}
       >
         <Providers>
           <Navigation />
-          <main className="flex-1 min-h-0">
+          <main className="flex-1">
             {children}
           </main>
+          <Footer />
         </Providers>
       </body>
     </html>

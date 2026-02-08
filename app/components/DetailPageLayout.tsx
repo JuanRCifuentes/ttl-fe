@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 
+
 export default function DetailPageLayout({
   title,
   children,
@@ -31,6 +32,8 @@ export default function DetailPageLayout({
 
         {children}
       </div>
+
+      <div className="flex-1" />
     </div>
   );
 }
