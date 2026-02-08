@@ -7,9 +7,11 @@ import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 export default function DetailPageLayout({
   title,
   children,
+  wide = false,
 }: {
   title: string;
   children?: React.ReactNode;
+  wide?: boolean;
 }) {
   const router = useRouter();
 
@@ -25,7 +27,7 @@ export default function DetailPageLayout({
         </button>
       </div>
 
-      <div className="px-4 sm:px-6 lg:px-8 py-6 max-w-3xl mx-auto w-full">
+      <div className={`px-4 sm:px-6 lg:px-8 py-6 mx-auto w-full ${wide ? "max-w-6xl" : "max-w-3xl"}`}>
         <h2 className="font-serif text-2xl sm:text-3xl font-bold text-neutral-900 dark:text-neutral-50 mb-6">
           {title}
         </h2>
