@@ -9,6 +9,7 @@ import {
   DialogPanel,
 } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { InformationCircleIcon } from "@heroicons/react/24/solid";
 import DetailPageLayout from "@/app/components/DetailPageLayout";
 import ImageCarousel from "@/app/components/ImageCarousel";
 import { useSupplyChain, type SupplyChainStage } from "@/app/hooks/useSupplyChain";
@@ -114,37 +115,45 @@ export default function SupplyChainPage() {
                           className="absolute top-4 left-4 -ml-px h-full w-0.5 bg-neutral-200 dark:bg-neutral-700"
                         />
                       )}
-                      <button
-                        onClick={() => handleStageOpen(stage.id)}
-                        onMouseEnter={() => handleStageSelect(stage.id)}
-                        className="relative flex space-x-3 w-full text-left cursor-pointer group"
-                      >
-                        <div>
-                          <span
-                            className={`flex size-8 items-center justify-center rounded-full text-xs font-bold ring-4 ring-white dark:ring-neutral-900 transition-colors ${
-                              isSelected
-                                ? "bg-blue-500 text-white"
-                                : "bg-neutral-200 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300 group-hover:bg-neutral-300 dark:group-hover:bg-neutral-600"
-                            }`}
-                          >
-                            {stage.id}
-                          </span>
-                        </div>
-                        <div className="flex min-w-0 flex-1 flex-col pt-0.5">
-                          <p
-                            className={`text-sm font-semibold transition-colors ${
-                              isSelected
-                                ? "text-blue-600 dark:text-blue-400"
-                                : "text-neutral-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400"
-                            }`}
-                          >
-                            {stage.name}
-                          </p>
-                          <p className="mt-0.5 text-xs text-neutral-500 dark:text-neutral-400 line-clamp-2">
-                            {stage.description}
-                          </p>
-                        </div>
-                      </button>
+                      <div className="relative flex items-center space-x-3">
+                        <button
+                          onClick={() => handleStageSelect(stage.id)}
+                          className="flex-1 flex space-x-3 text-left cursor-pointer group"
+                        >
+                          <div>
+                            <span
+                              className={`flex size-8 items-center justify-center rounded-full text-xs font-bold ring-4 ring-white dark:ring-neutral-900 transition-colors ${
+                                isSelected
+                                  ? "bg-primary-500 text-white"
+                                  : "bg-neutral-200 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300 group-hover:bg-neutral-300 dark:group-hover:bg-neutral-600"
+                              }`}
+                            >
+                              {stage.id}
+                            </span>
+                          </div>
+                          <div className="flex min-w-0 flex-1 flex-col pt-0.5">
+                            <p
+                              className={`text-sm font-semibold transition-colors ${
+                                isSelected
+                                  ? "text-primary-600 dark:text-primary-400"
+                                  : "text-neutral-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400"
+                              }`}
+                            >
+                              {stage.name}
+                            </p>
+                            <p className="mt-0.5 text-xs text-neutral-500 dark:text-neutral-400 line-clamp-2">
+                              {stage.description}
+                            </p>
+                          </div>
+                        </button>
+                        <button
+                          onClick={() => handleStageOpen(stage.id)}
+                          aria-label={`Details for ${stage.name}`}
+                          className="shrink-0 rounded-full p-1 text-primary-500 hover:text-primary-600 dark:text-primary-400 dark:hover:text-primary-300 transition-colors cursor-pointer"
+                        >
+                          <InformationCircleIcon className="size-7" />
+                        </button>
+                      </div>
                     </div>
                   </li>
                 );
