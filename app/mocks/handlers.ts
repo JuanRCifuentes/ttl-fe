@@ -1,6 +1,7 @@
 import { http, HttpResponse } from "msw";
 import type { Product } from "../context/ProductContext";
 import type { Certification } from "../hooks/useCertifications";
+import type { MaterialInnovation } from "../hooks/useMaterialInnovation";
 
 const IMAGE_URL =
   "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2830&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply";
@@ -124,11 +125,25 @@ const certifications: Certification[] = [
   },
 ];
 
+const materialInnovation: MaterialInnovation = {
+  images: [
+    { src: IMAGE_URL, alt: "Shiringa tree tapping" },
+    { src: IMAGE_URL, alt: "Raw shiringa latex" },
+    { src: IMAGE_URL, alt: "Shiringa fabric close-up" },
+  ],
+  text: "At dawn, when the forest begins to wake, artisans carry out the ancestral practice of drawing latex from the shiringa tree. A careful, measured cut, learned and passed down through generations, releases the \u201cforest milk\u201d in a way that honors the tree, never depletes it. Every drop is both material and story: a trace of knowledge that allows the trees to continue giving, and the communities to thrive in rhythm with the rainforest.\n\nWe then work this latex using our own formula, developed on-site and unique to the region, transforming it into a biotextile that is as resilient as it is alive. Its surface carries the subtle irregularities of the forest itself: each piece is naturally unique in color, because the latex of wild shiringa varies slightly from tree to tree. The result is a material that embodies ancestral wisdom, rigorous research, and a singular character that cannot be replicated elsewhere.",
+  linkUrl: "https://www.example.com/shiringa-innovation",
+  linkLabel: "Learn more about shiringa",
+};
+
 export const handlers = [
   http.get("/api/product/:id", () => {
     return HttpResponse.json(product);
   }),
   http.get("/api/product/:id/certifications", () => {
     return HttpResponse.json(certifications);
+  }),
+  http.get("/api/product/:id/material-innovation", () => {
+    return HttpResponse.json(materialInnovation);
   }),
 ];

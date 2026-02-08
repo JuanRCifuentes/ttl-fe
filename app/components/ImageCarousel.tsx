@@ -4,11 +4,9 @@ import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
-import { useProduct } from "../context/ProductContext";
+import type { ProductImage } from "../context/ProductContext";
 
-export default function ImageCarousel() {
-  const product = useProduct();
-  const images = product?.images ?? [];
+export default function ImageCarousel({ images }: { images: ProductImage[] }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,

@@ -18,7 +18,7 @@ export default function HomeContent() {
         </p>
       )}
 
-      <ImageCarousel />
+      <ImageCarousel images={product?.images ?? []} />
 
       {/* Content below carousel */}
       {product && (
