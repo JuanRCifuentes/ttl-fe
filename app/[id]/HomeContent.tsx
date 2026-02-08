@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import HomeCarousel from "@/app/components/HomeCarousel";
+import ImageCarousel from "@/app/components/ImageCarousel";
 import AppDialog from "@/app/components/AppDialog";
 import { useProduct } from "@/app/context/ProductContext";
 
@@ -18,7 +18,7 @@ export default function HomeContent() {
         </p>
       )}
 
-      <HomeCarousel />
+      <ImageCarousel />
 
       {/* Content below carousel */}
       {product && (

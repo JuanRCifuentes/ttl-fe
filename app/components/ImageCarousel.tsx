@@ -6,7 +6,7 @@ import Image from "next/image";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import { useProduct } from "../context/ProductContext";
 
-export default function HomeCarousel() {
+export default function ImageCarousel() {
   const product = useProduct();
   const images = product?.images ?? [];
   const [selectedIndex, setSelectedIndex] = useState(0);
