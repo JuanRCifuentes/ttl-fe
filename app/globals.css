@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+:root {
+  --background: #F7F7F7;
+  --foreground: #222222;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-roboto);
+
+  /* Primary – Orange */
+  --color-primary-50: #FFEFE6;
+  --color-primary-100: #FFD2B8;
+  --color-primary-200: #FAB38A;
+  --color-primary-300: #EF8E58;
+  --color-primary-400: #E67635;
+  --color-primary-500: #C85D21;
+  --color-primary-600: #AB6E19;
+  --color-primary-700: #8C3D10;
+  --color-primary-800: #773400;
+  --color-primary-900: #572508;
+
+  /* Secondary – Lime Green */
+  --color-secondary-50: #F2FDE0;
+  --color-secondary-100: #E1F7C0;
+  --color-secondary-200: #C7E891;
+  --color-secondary-300: #AADA5D;
+  --color-secondary-400: #94C841;
+  --color-secondary-500: #7BB027;
+  --color-secondary-600: #65931A;
+  --color-secondary-700: #507712;
+  --color-secondary-800: #42600C;
+  --color-secondary-900: #2B4D05;
+
+  /* Neutral – Grey */
+  --color-neutral-50: #F7F7F7;
+  --color-neutral-100: #E1E1E1;
+  --color-neutral-200: #CFCFCF;
+  --color-neutral-300: #B1B1B1;
+  --color-neutral-400: #9E9E9E;
+  --color-neutral-500: #7E7E7E;
+  --color-neutral-600: #626262;
+  --color-neutral-700: #515151;
+  --color-neutral-800: #3B3B3B;
+  --color-neutral-900: #222222;
+
+  /* Supportive – Light Blue */
+  --color-blue-50: #EBF8FF;
+  --color-blue-100: #D1EEFC;
+  --color-blue-200: #A7DBF0;
+  --color-blue-300: #7CC1E4;
+  --color-blue-400: #54A9D4;
+  --color-blue-500: #3994C0;
+  --color-blue-600: #2D83AE;
+  --color-blue-700: #1D6E96;
+  --color-blue-800: #166288;
+  --color-blue-900: #0B4F71;
+
+  /* Supportive – Red */
+  --color-red-50: #FFF0F0;
+  --color-red-100: #FACDCD;
+  --color-red-200: #F0A0A0;
+  --color-red-300: #E66A6A;
+  --color-red-400: #D64545;
+  --color-red-500: #BA2525;
+  --color-red-600: #A61C1C;
+  --color-red-700: #921111;
+  --color-red-800: #760A0A;
+  --color-red-900: #620404;
+
+  /* Supportive – Yellow */
+  --color-yellow-50: #FFFAEB;
+  --color-yellow-100: #FFF7E0;
+  --color-yellow-200: #FCEEC5;
+  --color-yellow-300: #F8E3A5;
+  --color-yellow-400: #F7D06E;
+  --color-yellow-500: #E9B949;
+  --color-yellow-600: #C8992D;
+  --color-yellow-700: #A27C1A;
+  --color-yellow-800: #7A5C10;
+  --color-yellow-900: #513C06;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #222222;
+    --foreground: #F7F7F7;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
