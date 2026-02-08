@@ -6,8 +6,12 @@ const IMAGE_URL =
 
 const product: Product = {
   name: "Amancaes",
-  title: "Not just a jacket...\n" + "Story behind Amancaes",
-  description: "The Amancaes Jacket takes its name from the amancay flower, an emblematic bloom of Quechua origin that flourishes on the mist-fed hillsides (lomas) along Peru’s central coast, and also grows as a wild flower across the Patagonian landscapes. The name carries with it a sense of resilience and ephemerality: the flower appears only in certain seasons, painting the arid hills with sudden bursts of yellow. Like the flower, this jacket symbolizes both rarity and strength.",
+  title: "Not just a jacket...\nStory behind Amancaes",
+  description: "The Amancaes Jacket takes its name from the amancay flower, an emblematic bloom of Quechua origin that flourishes on the mist-fed hillsides (lomas) along Peru's central coast, and also grows as a wild flower across the Patagonian landscapes. The name carries with it a sense of resilience and ephemerality: the flower appears only in certain seasons, painting the arid hills with sudden bursts of yellow. Like the flower, this jacket symbolizes both rarity and strength.",
+  brand: "SAKE",
+  madeIn: "Peru",
+  reference: "Referece",
+  sku: "125279643854",
   images: [
     { src: IMAGE_URL, alt: "Product image 1" },
     { src: IMAGE_URL, alt: "Product image 2" },

@@ -18,8 +18,7 @@ export default function PageSwiper({
     watchDrag: (_emblaApi, event) => {
       const target = event.target as HTMLElement;
       // Ignore drags from inside nested carousels
-      if (target.closest("[data-nested-carousel]")) return false;
-      return true;
+      return !target.closest("[data-nested-carousel]");
     },
   });
 

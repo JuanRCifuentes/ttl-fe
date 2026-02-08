@@ -22,7 +22,7 @@ export default function Navigation() {
   }
 
   return (
-    <header className="bg-primary-50 dark:bg-primary-700">
+    <header className="bg-background">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
         <div className="relative flex items-center justify-between py-4 sm:py-5">
           {/* Logo */}

@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Roboto, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Navigation from "./components/Navigation";
 import Providers from "./components/Providers";
 
 const roboto = Roboto({
   variable: "--font-roboto",
+  subsets: ["latin"],
+});
+
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
 });
 
@@ -22,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-dvh bg-neutral-50 dark:bg-neutral-900">
       <body
-        className={`${roboto.variable} antialiased flex flex-col h-dvh`}
+        className={`${roboto.variable} ${playfair.variable} antialiased flex flex-col h-dvh`}
       >
         <Providers>
           <Navigation />

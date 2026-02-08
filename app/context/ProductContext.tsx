@@ -11,6 +11,10 @@ export type Product = {
   name: string;
   title: string;
   description: string;
+  brand: string;
+  madeIn: string;
+  reference: string;
+  sku: string;
   images: ProductImage[];
 };
 
