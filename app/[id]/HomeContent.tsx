@@ -56,7 +56,7 @@ export default function HomeContent() {
 
       <div className="flex-1" />
 
-      <p className="pb-8 pt-4 text-center text-xs tracking-widest uppercase text-neutral-400 dark:text-neutral-500">
+      <p className="sticky bottom-0 pb-6 pt-10 text-center text-xs tracking-widest uppercase text-neutral-400 dark:text-neutral-500 bg-linear-to-t from-background from-60% to-transparent">
         Swipe for more →
       </p>
 
