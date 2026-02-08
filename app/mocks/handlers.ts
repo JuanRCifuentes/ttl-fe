@@ -4,6 +4,7 @@ import type { Certification } from "../hooks/useCertifications";
 import type { MaterialInnovation } from "../hooks/useMaterialInnovation";
 import type { GarmentCare } from "../hooks/useGarmentCare";
 import type { Composition } from "../hooks/useComposition";
+import type { EnvironmentalImpact } from "../hooks/useEnvironmentalImpact";
 
 const IMAGE_URL =
   "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2830&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply";
@@ -219,6 +220,20 @@ const composition: Composition = {
   ],
 };
 
+const environmentalImpact: EnvironmentalImpact = {
+  indicators: [
+    { name: "Water Use", value: "high" },
+    { name: "Energy Use", value: "mid" },
+    { name: "Chemical Compliant", value: "certified" },
+    { name: "Waste During Production", value: "low" },
+    { name: "Recyclability", value: "partially recyclable" },
+    { name: "CO2 Footprint", value: "low" },
+  ],
+  postConsumptionPlanUrl: "https://www.example.com/post-consumption",
+  certificationsUrl: "certifications",
+  learnMoreUrl: "https://www.example.com/environmental-impact",
+};
+
 export const handlers = [
   http.get("/api/product/:id", () => {
     return HttpResponse.json(product);
@@ -234,5 +249,8 @@ export const handlers = [
   }),
   http.get("/api/product/:id/composition", () => {
     return HttpResponse.json(composition);
+  }),
+  http.get("/api/product/:id/environmental-impact", () => {
+    return HttpResponse.json(environmentalImpact);
   }),
 ];
