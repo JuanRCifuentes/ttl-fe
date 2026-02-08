@@ -6,6 +6,7 @@ import type { GarmentCare } from "../hooks/useGarmentCare";
 import type { Composition } from "../hooks/useComposition";
 import type { EnvironmentalImpact } from "../hooks/useEnvironmentalImpact";
 import type { SocialImpact } from "../hooks/useSocialImpact";
+import type { SupplyChain } from "../hooks/useSupplyChain";
 
 const IMAGE_URL =
   "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2830&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply";
@@ -256,6 +257,203 @@ const socialImpact: SocialImpact = {
   linkLabel: "Learn more about the product",
 };
 
+const supplyChain: SupplyChain = {
+  completion: 75,
+  stages: [
+    {
+      id: 1,
+      name: "Shiringa Harvesting",
+      description:
+        "Wild shiringa latex is carefully extracted by indigenous artisans in the Peruvian Amazon using traditional tapping methods that preserve the health of each tree.",
+      images: [
+        { src: IMAGE_URL, alt: "Shiringa tree tapping" },
+        { src: IMAGE_URL, alt: "Latex collection" },
+      ],
+      position: [-3.749, -73.254],
+    },
+    {
+      id: 2,
+      name: "Latex Collection & Filtering",
+      description:
+        "Raw latex is collected from multiple trees, filtered to remove impurities, and stabilised with natural compounds to prevent premature coagulation.",
+      images: [],
+      position: [-3.784, -73.309],
+    },
+    {
+      id: 3,
+      name: "Bio-textile Transformation",
+      description:
+        "Using a proprietary on-site formula, the filtered latex is transformed into a flexible bio-textile sheet through a slow curing process unique to this region.",
+      images: [
+        { src: IMAGE_URL, alt: "Bio-textile lab" },
+      ],
+      position: [-3.731, -73.247],
+    },
+    {
+      id: 4,
+      name: "Organic Cotton Farming",
+      description:
+        "GOTS-certified organic cotton is cultivated in the fertile Cañete Valley on Peru's southern coast, irrigated by Andean snowmelt without synthetic pesticides.",
+      images: [
+        { src: IMAGE_URL, alt: "Cotton fields in Cañete" },
+      ],
+      position: [-13.114, -76.289],
+    },
+    {
+      id: 5,
+      name: "Cotton Ginning",
+      description:
+        "Harvested cotton bolls are mechanically separated from seeds and cleaned at a local ginning facility, producing raw fibre bales ready for spinning.",
+      images: [],
+      position: [-13.092, -76.271],
+    },
+    {
+      id: 6,
+      name: "Spinning",
+      description:
+        "Cotton fibres are spun into high-tenacity yarn at a solar-powered mill in Lima, blending ring-spinning tradition with modern efficiency.",
+      images: [
+        { src: IMAGE_URL, alt: "Spinning mill" },
+      ],
+      position: [-12.046, -77.042],
+    },
+    {
+      id: 7,
+      name: "Weaving",
+      description:
+        "The yarn is woven into a dense plain-weave fabric on rapier looms, producing the base cloth that will receive the shiringa lamination.",
+      images: [],
+      position: [-12.061, -77.036],
+    },
+    {
+      id: 8,
+      name: "Natural Dyeing",
+      description:
+        "Fabric panels are dyed using plant-based pigments — tara pods for warm neutrals, cochineal for accent reds — in a closed-loop water system.",
+      images: [
+        { src: IMAGE_URL, alt: "Natural dye vats" },
+        { src: IMAGE_URL, alt: "Dyed fabric drying" },
+      ],
+      position: [-12.059, -77.050],
+    },
+    {
+      id: 9,
+      name: "Shiringa Lamination",
+      description:
+        "The woven cotton base is laminated with the shiringa bio-textile under controlled heat and pressure, creating a water-resistant composite unique to each piece.",
+      images: [
+        { src: IMAGE_URL, alt: "Lamination process" },
+      ],
+      position: [-12.053, -77.040],
+    },
+    {
+      id: 10,
+      name: "Alpaca Fibre Sourcing",
+      description:
+        "Ethically sheared alpaca fleece is sourced from free-range herds in the Puno highlands, where herders follow ancestral animal-welfare practices.",
+      images: [
+        { src: IMAGE_URL, alt: "Alpaca herds in Puno" },
+      ],
+      position: [-15.840, -70.021],
+    },
+    {
+      id: 11,
+      name: "Alpaca Yarn Processing",
+      description:
+        "The raw fleece is washed, carded and spun into a fine-gauge yarn used for the jacket's insulating lining layer.",
+      images: [],
+      position: [-15.500, -70.135],
+    },
+    {
+      id: 12,
+      name: "Recycled Polyester Production",
+      description:
+        "Post-consumer PET bottles are collected, shredded and extruded into recycled polyester filament at a certified facility in Lima.",
+      images: [],
+      position: [-12.100, -76.990],
+    },
+    {
+      id: 13,
+      name: "Lining Knitting",
+      description:
+        "Recycled polyester and alpaca yarns are knitted into a lightweight mesh lining that provides moisture-wicking and thermal regulation.",
+      images: [],
+      position: [-12.070, -77.055],
+    },
+    {
+      id: 14,
+      name: "Brass Hardware Casting",
+      description:
+        "Solid brass zippers, snaps and buttons are cast at a family-owned foundry in Lima, then finished with a non-toxic anti-tarnish coating.",
+      images: [
+        { src: IMAGE_URL, alt: "Brass hardware foundry" },
+      ],
+      position: [-12.085, -77.001],
+    },
+    {
+      id: 15,
+      name: "Pattern Cutting",
+      description:
+        "Pattern pieces are digitally nested to minimise fabric waste (achieving <5 % offcut rate), then precision-cut with an automated cutter.",
+      images: [],
+      position: [-12.119, -77.028],
+    },
+    {
+      id: 16,
+      name: "Sewing & Assembly",
+      description:
+        "Skilled seamstresses assemble each jacket by hand and machine, triple-stitching all structural seams with waxed organic cotton thread.",
+      images: [
+        { src: IMAGE_URL, alt: "Sewing workshop" },
+        { src: IMAGE_URL, alt: "Detail stitching" },
+      ],
+      position: [-12.122, -77.032],
+    },
+    {
+      id: 17,
+      name: "Quality Control",
+      description:
+        "Every jacket undergoes a 40-point inspection covering seam strength, water resistance, hardware function and overall finish before approval.",
+      images: [],
+      position: [-12.123, -77.033],
+    },
+    {
+      id: 18,
+      name: "Finishing & Pressing",
+      description:
+        "Approved jackets are steam-pressed, labels are attached, and a protective beeswax finish is applied to the shiringa surface.",
+      images: [],
+      position: [-12.125, -77.034],
+    },
+    {
+      id: 19,
+      name: "Packaging",
+      description:
+        "Each jacket is folded into a reusable organic cotton garment bag with a shiringa repair patch kit, care card and seed-paper hangtag.",
+      images: [
+        { src: IMAGE_URL, alt: "Eco packaging" },
+      ],
+      position: [-12.126, -77.036],
+    },
+    {
+      id: 20,
+      name: "Warehousing",
+      description:
+        "Finished products are stored in a carbon-neutral warehouse in Callao, close to the port, awaiting distribution orders.",
+      images: [],
+      position: [-12.056, -77.118],
+    },
+    {
+      id: 21,
+      name: "Distribution & Retail",
+      description:
+        "Jackets are shipped via sea freight (lowest-carbon option) to regional distribution hubs and direct-to-consumer channels worldwide.",
+      images: [],
+      position: [-12.046, -77.135],
+    },
+  ],
+};
+
 export const handlers = [
   http.get("/api/product/:id", () => {
     return HttpResponse.json(product);
@@ -277,5 +475,8 @@ export const handlers = [
   }),
   http.get("/api/product/:id/social-impact", () => {
     return HttpResponse.json(socialImpact);
+  }),
+  http.get("/api/product/:id/supply-chain", () => {
+    return HttpResponse.json(supplyChain);
   }),
 ];
