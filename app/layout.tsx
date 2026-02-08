@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
 import Navigation from "./components/Navigation";
+import Providers from "./components/Providers";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -23,10 +24,12 @@ export default function RootLayout({
       <body
         className={`${roboto.variable} antialiased flex flex-col h-dvh`}
       >
-        <Navigation />
-        <main className="flex-1 min-h-0">
-          {children}
-        </main>
+        <Providers>
+          <Navigation />
+          <main className="flex-1 min-h-0">
+            {children}
+          </main>
+        </Providers>
       </body>
     </html>
   );

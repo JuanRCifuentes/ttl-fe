@@ -2,8 +2,8 @@
 
 import { useCallback, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import { usePathname, useRouter } from "next/navigation";
-import { pages } from "../pages";
+import { useParams, usePathname, useRouter } from "next/navigation";
+import { pages, pagePath } from "../pages";
 
 export default function PageSwiper({
   initialSlide = 0,
@@ -12,19 +12,26 @@ export default function PageSwiper({
 }) {
   const router = useRouter();
   const pathname = usePathname();
+  const { id } = useParams<{ id: string }>();
   const [emblaRef, emblaApi] = useEmblaCarousel({
     startIndex: initialSlide,
-    watchDrag: true,
+    watchDrag: (_emblaApi, event) => {
+      const target = event.target as HTMLElement;
+      // Ignore drags from inside nested carousels
+      if (target.closest("[data-nested-carousel]")) return false;
+      return true;
+    },
   });
 
   const syncRoute = useCallback(() => {
     if (!emblaApi) return;
     const index = emblaApi.selectedScrollSnap();
-    const nextPath = pages[index]?.path ?? pages[0].path;
+    const page = pages[index] ?? pages[0];
+    const nextPath = pagePath(id, page);
     if (pathname !== nextPath) {
       router.push(nextPath, { scroll: false });
     }
-  }, [emblaApi, pathname, router]);
+  }, [emblaApi, pathname, router, id]);
 
   useEffect(() => {
     if (!emblaApi) return;

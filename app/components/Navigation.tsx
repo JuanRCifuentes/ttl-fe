@@ -1,19 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import {
   Dialog,
   DialogBackdrop,
   DialogPanel,
 } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { pages } from "../pages";
+import { pages, pagePath } from "../pages";
 
 export default function Navigation() {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
+  const { id } = useParams<{ id: string }>();
 
   function navigate(path: string) {
     router.push(path, { scroll: false });
@@ -78,19 +79,22 @@ export default function Navigation() {
                 </div>
               </div>
               <div className="mt-3 space-y-1 px-2">
-                {pages.map((page) => (
+                {pages.map((page) => {
+                  const fullPath = pagePath(id, page);
+                  return (
                   <button
                     key={page.slug}
-                    onClick={() => navigate(page.path)}
+                    onClick={() => navigate(fullPath)}
                     className={`block w-full text-left rounded-md px-3 py-2 text-base font-medium ${
-                      pathname === page.path
+                      pathname === fullPath
                         ? "bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-300"
                         : "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-white"
                     }`}
                   >
                     {page.name}
                   </button>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
