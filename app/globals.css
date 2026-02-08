@@ -47,6 +47,18 @@
   --color-neutral-800: #3B3B3B;
   --color-neutral-900: #222222;
 
+  /* Semantic – Green (positive/active/completion) */
+  --color-green-50: #E6F7E6;
+  --color-green-100: #C3EAC3;
+  --color-green-200: #9BDB9B;
+  --color-green-300: #6EC96E;
+  --color-green-400: #4DB84D;
+  --color-green-500: #2E9E2E;
+  --color-green-600: #248A24;
+  --color-green-700: #1A721A;
+  --color-green-800: #125C12;
+  --color-green-900: #0A450A;
+
   /* Supportive – Light Blue */
   --color-blue-50: #EBF8FF;
   --color-blue-100: #D1EEFC;

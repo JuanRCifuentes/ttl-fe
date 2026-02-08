@@ -40,7 +40,7 @@ export default function ProductDetailsContent() {
                 <div
                   className="absolute inset-0 opacity-20 dark:opacity-15"
                   style={{
-                    background: `linear-gradient(to right, var(--color-secondary-400) ${100 - detail.impact}%, var(--color-red-400) 100%)`,
+                    background: `linear-gradient(to right, var(--color-green-400) ${100 - detail.impact}%, var(--color-red-400) 100%)`,
                   }}
                 />
               )}
@@ -50,7 +50,7 @@ export default function ProductDetailsContent() {
                 <div
                   className="absolute inset-0 opacity-20 dark:opacity-15"
                   style={{
-                    background: `linear-gradient(to right, var(--color-secondary-400) ${detail.completion}%, transparent ${detail.completion + 20}%)`,
+                    background: `linear-gradient(to right, var(--color-green-400) ${detail.completion}%, transparent ${detail.completion + 20}%)`,
                   }}
                 />
               )}
