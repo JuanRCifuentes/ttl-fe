@@ -2,6 +2,7 @@ import { http, HttpResponse } from "msw";
 import type { Product } from "../context/ProductContext";
 import type { Certification } from "../hooks/useCertifications";
 import type { MaterialInnovation } from "../hooks/useMaterialInnovation";
+import type { GarmentCare } from "../hooks/useGarmentCare";
 
 const IMAGE_URL =
   "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2830&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply";
@@ -136,6 +137,34 @@ const materialInnovation: MaterialInnovation = {
   linkLabel: "Learn more about shiringa",
 };
 
+const garmentCare: GarmentCare = {
+  images: [
+    { src: IMAGE_URL, alt: "Garment care overview" },
+    { src: IMAGE_URL, alt: "Washing the jacket" },
+    { src: IMAGE_URL, alt: "Jacket maintenance" },
+  ],
+  sections: [
+    {
+      title: "Washing Instructions",
+      text: "Hand wash only in cold water (max 30 °C) using a mild, pH-neutral detergent. Do not wring or twist the fabric. Gently press out excess water with a clean towel and lay flat to dry away from direct sunlight. Never machine wash, tumble dry or dry clean — the shiringa bio-textile is sensitive to high temperatures and chemical solvents.",
+    },
+    {
+      title: "Maintenance",
+      text: "After each use, wipe the surface with a soft damp cloth to remove dust and body oils. Store the jacket on a wide, padded hanger in a cool, ventilated space. Avoid folding for extended periods to prevent permanent creasing. Periodically apply a thin layer of natural beeswax balm to maintain the water-resistant finish and keep the latex supple.",
+    },
+    {
+      title: "Care Repairs",
+      text: "Minor surface scratches can be buffed out gently with a soft cotton cloth. For small tears or punctures, apply a shiringa-based repair patch (included with your purchase) following the enclosed instructions. For structural damage or seam separation, contact our repair service — we offer free repairs within the first two years of ownership.",
+    },
+    {
+      title: "Durability Indicators",
+      text: "The Amancaes Jacket is designed for a minimum lifespan of 10 years with proper care. The shiringa bio-textile naturally develops a unique patina over time, deepening in character without losing performance. Seams are triple-stitched with waxed organic cotton thread. Hardware is solid brass with an anti-tarnish coating. If any component fails under normal use within 5 years, it will be replaced at no cost.",
+    },
+  ],
+  linkUrl: "https://www.example.com/amancaes-care",
+  linkLabel: "Know more about the product",
+};
+
 export const handlers = [
   http.get("/api/product/:id", () => {
     return HttpResponse.json(product);
@@ -145,5 +174,8 @@ export const handlers = [
   }),
   http.get("/api/product/:id/material-innovation", () => {
     return HttpResponse.json(materialInnovation);
+  }),
+  http.get("/api/product/:id/garment-care", () => {
+    return HttpResponse.json(garmentCare);
   }),
 ];
