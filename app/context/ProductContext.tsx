@@ -7,6 +7,18 @@ export type ProductImage = {
   alt: string;
 };
 
+export type ProductDetail = {
+  title: string;
+  description: string;
+  image?: string;
+  /** Route segment under product-details/ */
+  route: string;
+  /** Completion percentage 0–100, shown as a fill effect on the card */
+  completion?: number;
+  /** Environmental impact 0–100, 0=green 100=red, shown as gradient bg */
+  impact?: number;
+};
+
 export type Product = {
   name: string;
   title: string;
@@ -16,6 +28,7 @@ export type Product = {
   reference: string;
   sku: string;
   images: ProductImage[];
+  details: ProductDetail[];
 };
 
 const ProductContext = createContext<Product | null>(null);

@@ -19,6 +19,51 @@ const product: Product = {
     { src: IMAGE_URL, alt: "Product image 4" },
     { src: IMAGE_URL, alt: "Product image 5" },
   ],
+  details: [
+    {
+      title: "Supply Chain",
+      description: "From fiber to garment",
+      image: IMAGE_URL,
+      route: "supply-chain",
+      completion: 75,
+    },
+    {
+      title: "Composition",
+      description: "Learn all about the materials",
+      image: IMAGE_URL,
+      route: "composition",
+    },
+    {
+      title: "Environmental impact",
+      description: "Check the environmental impact of this garment",
+      image: IMAGE_URL,
+      route: "environmental-impact",
+      impact: 25,
+    },
+    {
+      title: "Social impact",
+      description: "Working with communities to enhance rural development",
+      image: IMAGE_URL,
+      route: "social-impact",
+    },
+    {
+      title: "Material innovation",
+      description: "Why shiringa is an innovative material",
+      image: IMAGE_URL,
+      route: "material-innovation",
+    },
+    {
+      title: "Garment care",
+      description: "Extend the lifespan of your product",
+      image: IMAGE_URL,
+      route: "garment-care",
+    },
+    {
+      title: "Certifications",
+      description: "Clic here to check all the certifications related to materials, processes and more",
+      route: "certifications",
+    },
+  ],
 };
 
 export const handlers = [
